@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApp.Mobile", "Bankin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApp.Shared", "BankingApp.Shared\BankingApp.Shared.csproj", "{37305A32-1724-48C2-A651-529C8E8B4ABE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BnakingApp.Client", "BnakingApp.Client\BnakingApp.Client.csproj", "{1D016ADC-6F0D-4C21-8D7F-EE72D40DFA75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApp.Client", "BnakingApp.Client\BankingApp.Client.csproj", "{1D016ADC-6F0D-4C21-8D7F-EE72D40DFA75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
