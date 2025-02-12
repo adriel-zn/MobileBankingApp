@@ -6,7 +6,8 @@
 
         public BankingHttpClient(HttpClient httpClient)
         {
-            HttpClient = httpClient;
+            httpClient.DefaultRequestHeaders.Add("UserKey", "12345678");
+            HttpClient = httpClient;            
         }
     }
 }

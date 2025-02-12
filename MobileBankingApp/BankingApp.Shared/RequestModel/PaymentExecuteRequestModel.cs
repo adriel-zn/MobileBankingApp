@@ -9,6 +9,5 @@ namespace BankingApp.Shared.RequestModel
     public class PaymentExecuteRequestModel
     {
         public string InstructionIdentifier { get; set; }
-        public decimal Fees { get; set; }
     }
 }

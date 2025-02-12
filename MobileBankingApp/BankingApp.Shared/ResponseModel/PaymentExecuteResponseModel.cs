@@ -8,6 +8,6 @@ namespace BankingApp.Shared.ResponseModel
 {
     public class PaymentExecuteResponseModel
     {
-        public string Result { get; set; }
+        public string InstructionReference { get; set; }
     }
 }

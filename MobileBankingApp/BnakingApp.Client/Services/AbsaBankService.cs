@@ -1,6 +1,9 @@
 ﻿using System.Net.Http.Json;
+using System.Text.Json;
 using BankingApp.Client.Interfaces;
 using BankingApp.Shared.Models;
+using BankingApp.Shared.RequestModel;
+using BankingApp.Shared.ResponseModel;
 using BnakingApp.Client;
 
 namespace BankingApp.Client.Services
@@ -26,9 +29,31 @@ namespace BankingApp.Client.Services
 
 
         #region POST METHOD
-        public async Task<>
+        public async Task<PaymentReviewResponseModel> PaymentReviewAsync(PaymentReviewRequestModel paymentReviewRequestModel)
+        {
+            var uri = $"https://testbankapi.azurewebsites.net/PaymentReview";
+            var jsonContent = JsonSerializer.Serialize(paymentReviewRequestModel);
+            var response = await _bankingHttpClient.HttpClient.PostAsJsonAsync(uri, jsonContent);
+            var responseBody = await response.Content.ReadAsStringAsync();
 
+            PaymentReviewResponseModel responseModel = JsonSerializer.Deserialize<PaymentReviewResponseModel>(responseBody) 
+                ?? throw new Exception(response.Content.ToString());
 
+            return responseModel;
+        }
+
+        public async Task<PaymentExecuteResponseModel> PaymentReviewAsync(PaymentExecuteRequestModel paymentExecuteRequestModel)
+        {
+            var uri = $"https://testbankapi.azurewebsites.net/PaymentExecute";
+            var jsonContent = JsonSerializer.Serialize(paymentExecuteRequestModel);
+            var response = await _bankingHttpClient.HttpClient.PostAsJsonAsync(uri, jsonContent);
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            PaymentExecuteResponseModel responseModel = JsonSerializer.Deserialize<PaymentExecuteResponseModel>(responseBody)
+                ?? throw new Exception(response.Content.ToString());
+
+            return responseModel;
+        }
         #endregion
     }
 }

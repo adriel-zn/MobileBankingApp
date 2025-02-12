@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BankingApp.Shared.ResponseModel
 {
-    internal class PaymentReviewResponseModel
+    public class PaymentReviewResponseModel
     {
+        public string InstructionIdentifier { get; set; }
+        public decimal Fees { get; set; }
     }
 }
