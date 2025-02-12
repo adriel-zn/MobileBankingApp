@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using BankingApp.Mobile.Models;
+using BankingApp.Shared;
 
 namespace BankingApp.Mobile.ViewModels
 {
