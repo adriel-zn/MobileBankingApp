@@ -1,4 +1,5 @@
-﻿namespace BankingApp.Mobile
+﻿
+namespace BankingApp.Mobile
 {
     public partial class AppShell : Shell
     {
@@ -6,5 +7,7 @@
         {
             InitializeComponent();
         }
+
+
     }
 }
