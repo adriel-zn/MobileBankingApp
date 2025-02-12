@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BankingApp.Mobile.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace BankingApp.Mobile
 {
@@ -18,6 +19,10 @@ namespace BankingApp.Mobile
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+            // Register ViewModel
+            builder.Services.AddSingleton<BeneficiaryViewModel>();
+
 
             return builder.Build();
         }
