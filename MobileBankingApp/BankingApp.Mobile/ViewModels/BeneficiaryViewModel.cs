@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using BankingApp.Shared;
+using BankingApp.Shared.Models;
 
 namespace BankingApp.Mobile.ViewModels
 {
@@ -9,14 +10,14 @@ namespace BankingApp.Mobile.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private ObservableCollection<Beneficiary> _beneficiaries;
-        public ObservableCollection<Beneficiary> Beneficiaries
+        private ObservableCollection<BeneficiaryModel> _beneficiaries;
+        public ObservableCollection<BeneficiaryModel> Beneficiaries
         {
             get => _beneficiaries;
             set
             {
                 _beneficiaries = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Beneficiary)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(BeneficiaryModel)));
             }
         }
 
@@ -24,14 +25,14 @@ namespace BankingApp.Mobile.ViewModels
 
         public BeneficiaryViewModel()
         {
-            Beneficiaries = new ObservableCollection<Beneficiary>();
+            Beneficiaries = new ObservableCollection<BeneficiaryModel>();
             LoadBeneficiariesCommand = new Command(LoadBeneficiaries);
         }
 
         private void LoadBeneficiaries()
         {
-            Beneficiaries.Add(new Beneficiary { Name = "Laptop" });
-            Beneficiaries.Add(new Beneficiary { Name = "Phone" });
+            Beneficiaries.Add(new BeneficiaryModel { Name = "Laptop" });
+            Beneficiaries.Add(new BeneficiaryModel { Name = "Phone" });
         }
     }
 }
