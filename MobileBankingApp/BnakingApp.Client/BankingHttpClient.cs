@@ -4,9 +4,9 @@
     {
         public HttpClient HttpClient { get; set; }
 
-        public BankingHttpClient(HttpClient _httpClient)
+        public BankingHttpClient(HttpClient httpClient)
         {
-            HttpClient = _httpClient;
+            HttpClient = httpClient;
         }
     }
 }
