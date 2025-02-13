@@ -9,6 +9,6 @@ public partial class ResultPage : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.Navigation.PushAsync(new MainPage());
+        await Shell.Current.Navigation.PopToRootAsync();
     }
 }
