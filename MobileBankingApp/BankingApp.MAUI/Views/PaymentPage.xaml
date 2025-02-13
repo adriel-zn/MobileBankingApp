@@ -10,13 +10,13 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="20"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Picker Title="Account" Grid.Row="0" ItemsSource="{Binding Accounts}" ItemDisplayBinding="{Binding Number}"   />
+            <Picker Title="Select an Account" Grid.Row="0" ItemsSource="{Binding Accounts}" ItemDisplayBinding="{Binding Number}"   />
             <Entry Grid.Row="2" Grid.Column="1" 
                    Placeholder="Enter amount" />
 
