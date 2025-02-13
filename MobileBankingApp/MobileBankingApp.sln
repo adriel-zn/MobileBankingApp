@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApp.Shared", "Bankin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApp.Client", "BnakingApp.Client\BankingApp.Client.csproj", "{1D016ADC-6F0D-4C21-8D7F-EE72D40DFA75}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingApp.MAUI", "BankingApp.MAUI\BankingApp.MAUI.csproj", "{B8DE3089-FA37-481F-BAD1-2D1EA3C845FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		{1D016ADC-6F0D-4C21-8D7F-EE72D40DFA75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D016ADC-6F0D-4C21-8D7F-EE72D40DFA75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D016ADC-6F0D-4C21-8D7F-EE72D40DFA75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8DE3089-FA37-481F-BAD1-2D1EA3C845FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8DE3089-FA37-481F-BAD1-2D1EA3C845FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8DE3089-FA37-481F-BAD1-2D1EA3C845FF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B8DE3089-FA37-481F-BAD1-2D1EA3C845FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8DE3089-FA37-481F-BAD1-2D1EA3C845FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8DE3089-FA37-481F-BAD1-2D1EA3C845FF}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
