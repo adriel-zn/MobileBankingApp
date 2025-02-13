@@ -5,10 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BankingApp.MAUI"
     Shell.FlyoutBehavior="Flyout"
-    Title="BankingApp.MAUI">
+    Title="ABSA Banking App">
 
     <ShellContent
-        Title="Home"
+        Title="Dashboard"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 

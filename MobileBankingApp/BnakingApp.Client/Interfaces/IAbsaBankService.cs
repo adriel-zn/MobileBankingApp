@@ -12,12 +12,12 @@ namespace BankingApp.Client.Interfaces
     public interface IAbsaBankService
     {
         #region GET METHODS
-        Task<BeneficiaryModel> PaymentInitialiseAsync();
+        Task<IEnumerable<BeneficiaryModel>> PaymentInitialiseAsync();
         #endregion
 
         #region POST METHOD
         Task<PaymentReviewResponseModel> PaymentReviewAsync(PaymentReviewRequestModel paymentReviewRequestModel);
-        Task<PaymentExecuteResponseModel> PaymentExecuteAsync(PaymentExecuteRequestModel paymentExecuteRequestModel)
+        Task<PaymentExecuteResponseModel> PaymentExecuteAsync(PaymentExecuteRequestModel paymentExecuteRequestModel);
         #endregion
     }
 

@@ -19,10 +19,10 @@ namespace BankingApp.Client.Services
 
 
         #region GET METHOD
-        public async Task<BeneficiaryModel> PaymentInitialiseAsync()
+        public async Task<IEnumerable<BeneficiaryModel>> PaymentInitialiseAsync()
         {
             var uri = $"https://testbankapi.azurewebsites.net/PaymentInitialise";
-            return await _bankingHttpClient.HttpClient.GetFromJsonAsync<BeneficiaryModel>(uri) 
+            return await _bankingHttpClient.HttpClient.GetFromJsonAsync<IEnumerable<BeneficiaryModel>>(uri) 
                 ?? throw new Exception("Error occurred while retrieving data for payment initialise api.");
         }
         #endregion
