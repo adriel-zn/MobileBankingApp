@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BankingApp.Shared.Models;
+using BankingApp.Shared.RequestModel;
+using BankingApp.Shared.ResponseModel;
 
 namespace BankingApp.Client.Interfaces
 {
@@ -12,5 +14,11 @@ namespace BankingApp.Client.Interfaces
         #region GET METHODS
         Task<BeneficiaryModel> PaymentInitialiseAsync();
         #endregion
+
+        #region POST METHOD
+        Task<PaymentReviewResponseModel> PaymentReviewAsync(PaymentReviewRequestModel paymentReviewRequestModel);
+        Task<PaymentExecuteResponseModel> PaymentExecuteAsync(PaymentExecuteRequestModel paymentExecuteRequestModel)
+        #endregion
     }
+
 }

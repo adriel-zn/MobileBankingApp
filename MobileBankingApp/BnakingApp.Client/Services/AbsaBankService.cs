@@ -42,7 +42,7 @@ namespace BankingApp.Client.Services
             return responseModel;
         }
 
-        public async Task<PaymentExecuteResponseModel> PaymentReviewAsync(PaymentExecuteRequestModel paymentExecuteRequestModel)
+        public async Task<PaymentExecuteResponseModel> PaymentExecuteAsync(PaymentExecuteRequestModel paymentExecuteRequestModel)
         {
             var uri = $"https://testbankapi.azurewebsites.net/PaymentExecute";
             var jsonContent = JsonSerializer.Serialize(paymentExecuteRequestModel);
