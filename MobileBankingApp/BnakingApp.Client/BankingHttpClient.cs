@@ -1,4 +1,4 @@
-﻿namespace BnakingApp.Client
+﻿namespace BankingApp.Client
 {
     public class BankingHttpClient
     {

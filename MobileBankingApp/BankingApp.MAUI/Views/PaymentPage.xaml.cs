@@ -7,7 +7,11 @@ public partial class PaymentPage : ContentPage
 	public PaymentPage()
 	{
 		InitializeComponent();
-        BindingContext = new AccountViewModel();
+        //BindingContext = new AccountViewModel();
+    }
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
     }
 
     private async void Button_Clicked(object sender, EventArgs e)

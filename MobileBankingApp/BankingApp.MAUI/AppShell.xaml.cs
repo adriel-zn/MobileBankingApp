@@ -7,6 +7,7 @@ namespace BankingApp.MAUI
         public AppShell()
         {
             InitializeComponent();
+
             Routing.RegisterRoute(nameof(PaymentPage), typeof(PaymentPage));
             Routing.RegisterRoute(nameof(ReviewPage), typeof(ReviewPage));
             Routing.RegisterRoute(nameof(ResultPage), typeof(ResultPage));

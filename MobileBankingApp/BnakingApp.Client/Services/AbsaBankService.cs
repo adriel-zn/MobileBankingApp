@@ -4,7 +4,7 @@ using BankingApp.Client.Interfaces;
 using BankingApp.Shared.Models;
 using BankingApp.Shared.RequestModel;
 using BankingApp.Shared.ResponseModel;
-using BnakingApp.Client;
+using BankingApp.Client;
 
 namespace BankingApp.Client.Services
 {
