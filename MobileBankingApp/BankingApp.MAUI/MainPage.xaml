@@ -7,7 +7,7 @@
     <ListView ItemsSource="{Binding Beneficiaries}">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ViewCell>
+                <ViewCell Tapped="ViewCell_Tapped_1">
                     <Grid Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -18,7 +18,7 @@
                         
                         <Label Grid.Column="1"
                            Text="{Binding Name}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
-                           FontAttributes="Bold" FontSize="Header" />
+                           FontAttributes="Bold" FontSize="Default" />
                         
                     </Grid>
                 </ViewCell>

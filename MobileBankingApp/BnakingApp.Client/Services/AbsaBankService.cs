@@ -25,6 +25,12 @@ namespace BankingApp.Client.Services
             return await _bankingHttpClient.HttpClient.GetFromJsonAsync<IEnumerable<BeneficiaryModel>>(uri) 
                 ?? throw new Exception("Error occurred while retrieving data for payment initialise api.");
         }
+        public async Task<IEnumerable<AccountModel>> GetAllAccountsAsync()
+        {
+            var uri = $"https://testbankapi.azurewebsites.net/PaymentInitialise";
+            return await _bankingHttpClient.HttpClient.GetFromJsonAsync<IEnumerable<AccountModel>>(uri)
+                ?? throw new Exception("Error occurred while retrieving data for accounts initialise api.");
+        }
         #endregion
 
 

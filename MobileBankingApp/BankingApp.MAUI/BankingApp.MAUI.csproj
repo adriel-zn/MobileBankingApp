@@ -67,4 +67,10 @@
 	  <ProjectReference Include="..\BnakingApp.Client\BankingApp.Client.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="Views\PaymentPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

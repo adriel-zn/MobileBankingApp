@@ -13,6 +13,7 @@ namespace BankingApp.Client.Interfaces
     {
         #region GET METHODS
         Task<IEnumerable<BeneficiaryModel>> PaymentInitialiseAsync();
+        Task<IEnumerable<AccountModel>> GetAllAccountsAsync();
         #endregion
 
         #region POST METHOD
