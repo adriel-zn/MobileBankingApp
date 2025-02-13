@@ -4,5 +4,26 @@
              x:Class="BankingApp.MAUI.MainPage">
 
 
-
+    <ListView ItemsSource="{Binding Beneficiaries}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Label Grid.Column="1"
+                           Text="{Binding Name}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                           FontAttributes="Bold" FontSize="Header" />
+                        
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    
 </ContentPage>
