@@ -8,8 +8,8 @@ namespace BankingApp.Shared.RequestModel
 {
     public class PaymentReviewRequestModel
     {
-        public string BeneficiaryId { get; set; }
-        public string AccountNumber { get; set; }   
+        public string? BeneficiaryId { get; set; }
+        public string? AccountNumber { get; set; }   
         public decimal Amount { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace BankingApp.Shared.ResponseModel
 {
     public class PaymentReviewResponseModel
     {
-        public string InstructionIdentifier { get; set; }
+        public string? InstructionIdentifier { get; set; }
         public decimal Fees { get; set; }
     }
 }
