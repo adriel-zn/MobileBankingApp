@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BankingApp.MAUI.Views.ResultPage"
-             Title="Payment Result">
+             x:Class="BankingApp.MAUI.Views.ResultPage">
 
-    <Grid Margin="20">
+    <Grid Margin="50">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
@@ -16,9 +15,14 @@
         </Grid.RowDefinitions>
 
         <Label 
-    Text="Payment Successfully" FontSize="Medium" Grid.Row="0"
+    Text="Payment made successfully!" FontSize="Title" Grid.Row="0"
     VerticalOptions="Center" TextColor="GreenYellow"
     HorizontalOptions="Center" />
+
+        <!--<Label 
+Text="Payment was unsuccessful!" FontSize="Medium" Grid.Row="0"
+VerticalOptions="Center" TextColor="IndianRed"
+HorizontalOptions="Center" />-->
 
         <Button Grid.Row="4" Text="Done" Clicked="Button_Clicked" StyleClass="Primary" />
     </Grid>
