@@ -2,7 +2,7 @@
 {
     public class BankingHttpClient
     {
-        public HttpClient HttpClient { get; set; }
+        public HttpClient HttpClient { get; }
 
         public BankingHttpClient(HttpClient httpClient)
         {

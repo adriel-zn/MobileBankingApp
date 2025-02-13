@@ -1,32 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BankingApp.MAUI.MainPage"
-             xmlns:local="clr-namespace:BankingApp.MAUI.ViewModels">
+             x:Class="BankingApp.MAUI.MainPage">
+    <StackLayout Padding="10">
+        <ListView ItemsSource="{Binding Items}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Tapped="ViewCell_Tapped_1">
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-    <ContentPage.BindingContext>
-        <local:BeneficiaryViewModel />
-    </ContentPage.BindingContext>
-    <ListView ItemsSource="{Binding Beneficiaries}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell Tapped="ViewCell_Tapped_1">
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        
-                        <Label Grid.Column="1"
+                            <Label Grid.Column="1"
                            Text="{Binding Name}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
                            FontAttributes="Bold" FontSize="Default" />
-                        
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
-    
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>

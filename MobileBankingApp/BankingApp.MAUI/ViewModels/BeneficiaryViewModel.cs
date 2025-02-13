@@ -1,4 +1,6 @@
-﻿using BankingApp.Shared.Models;
+﻿using BankingApp.Client.Interfaces;
+using BankingApp.Client.Services;
+using BankingApp.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,55 +8,37 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace BankingApp.MAUI.ViewModels
 {
-    public class BeneficiaryViewModel: INotifyPropertyChanged
+    public class BeneficiaryViewModel : INotifyPropertyChanged
     {
-        readonly IList<BeneficiaryModel>? sources;
+        private readonly IAbsaBankService _absaBankService;
 
-        BeneficiaryModel? selectedBeneficiary;
+        public ObservableCollection<BeneficiaryModel> Items { get; set; } = new ObservableCollection<BeneficiaryModel>();
 
-        public ObservableCollection<BeneficiaryModel>? Beneficiaries { get; private set; }
-
-        public BeneficiaryModel SelectedBeneficiary
+        public BeneficiaryViewModel(IAbsaBankService absaBankService)
         {
-            get => selectedBeneficiary;
-            set
+            _absaBankService = absaBankService;
+
+            _ = LoadBeneficiaries();
+        }
+
+        private async Task LoadBeneficiaries()
+        {
+            var results = await _absaBankService.PaymentInitialiseAsync();
+
+            Items.Clear();
+
+            foreach (var item in results.Beneficiaries)
             {
-                if (selectedBeneficiary != value)
-                {
-                    selectedBeneficiary = value;
-                }
+                Items.Add(item);
             }
-        }
-
-        public BeneficiaryViewModel()
-        {
-            sources = new List<BeneficiaryModel>();
-            LoadBeneficiaryCollection();
-
-            SelectedBeneficiary = Beneficiaries.Skip(3).FirstOrDefault();
-            OnPropertyChanged("SelectedBeneficiary");
 
         }
-
-        void LoadBeneficiaryCollection()
-        {
-            sources.Add(new BeneficiaryModel
-            {
-                Name = "Baboon"
-            });
-
-            sources.Add(new BeneficiaryModel
-            {
-                Name = "Monkey"
-            });
-
-            Beneficiaries = new ObservableCollection<BeneficiaryModel>(sources);
-        }
-
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

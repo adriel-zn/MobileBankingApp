@@ -1,4 +1,5 @@
-﻿using BankingApp.Client.Interfaces;
+﻿using BankingApp.Client;
+using BankingApp.Client.Interfaces;
 using BankingApp.Client.Services;
 using BankingApp.MAUI.ViewModels;
 using BankingApp.MAUI.Views;
@@ -20,6 +21,14 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
+        //builder.Services.AddHttpClient<BankingHttpClient>(client =>
+        //{ 
+        //    client.DefaultRequestHeaders = new System.Net.Http.Headers.HttpHeaders("UserKey", "12345678");
+        //    client.BaseAddress = new Uri(appSettings.ApiUrl);
+        //});
+
+        builder.Services.AddTransient<BankingHttpClient>();
+        builder.Services.AddTransient<HttpClient>();
 
         builder.Services.AddTransient<IAbsaBankService, AbsaBankService>();
 
