@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BankingApp.MAUI.Views.ReviewPage"
+             Title="Payment Review Page">
+    <VerticalStackLayout>
+        <Grid Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" 
+Text="Beneficiary Name" />
+
+            <Label Grid.Row="0" Grid.Column="1" 
+Text="Baboon" />
+
+            <Label Grid.Row="2" Grid.Column="0" 
+            Text="Account Number" />
+
+            <Label Grid.Row="2" Grid.Column="1" 
+Text="1111" />
+
+            <Label Grid.Row="4" Grid.Column="0" 
+Text="Bank" />
+
+            <Label Grid.Row="4" Grid.Column="1" 
+Text="ABSA" />
+
+            <Label Grid.Row="6" Grid.Column="0" 
+Text="Amount" />
+
+
+            <Label Grid.Row="6" Grid.Column="1" 
+Text="12" />
+
+            <Label Grid.Row="8" Grid.Column="0" 
+Text="Fee" />
+
+            <Label Grid.Row="8" Grid.Column="1" 
+Text="22" />
+
+            <Button Grid.Row="10" Grid.ColumnSpan="2" Text="Make Payment" StyleClass="Primary" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

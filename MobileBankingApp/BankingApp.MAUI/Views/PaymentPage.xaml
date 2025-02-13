@@ -20,7 +20,7 @@
             <Entry Grid.Row="2" Grid.Column="1" 
                    Placeholder="Enter amount" />
 
-            <Button Grid.Row="4" Text="Confirm Payment" StyleClass="Primary" />
+            <Button Grid.Row="4" Text="Confirm Payment" Clicked="Button_Clicked" StyleClass="Primary" />
         </Grid>
     </VerticalStackLayout>
 </ContentPage>
