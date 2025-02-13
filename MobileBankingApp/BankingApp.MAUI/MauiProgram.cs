@@ -1,4 +1,6 @@
-﻿using BankingApp.MAUI.ViewModels;
+﻿using BankingApp.Client.Interfaces;
+using BankingApp.Client.Services;
+using BankingApp.MAUI.ViewModels;
 using Microsoft.Extensions.Logging;
 
 namespace BankingApp.MAUI
@@ -16,8 +18,13 @@ namespace BankingApp.MAUI
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddSingleton<BeneficiaryViewModel>();
+            //builder.Services.AddSingleton<IAbsaBankService, AbsaBankService>();
+            
+            builder.Services.AddSingleton<MainViewModel>();
 
+            builder.Services.AddSingleton<MainPage>();
+
+            Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

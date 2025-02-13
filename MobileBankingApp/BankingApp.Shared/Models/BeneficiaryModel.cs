@@ -2,7 +2,7 @@
 {
     public class BeneficiaryModel
     {
-        public int Id { get; set; } = 0;
+        public string Id { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Bank { get; set; } = string.Empty;
         public string BankCode { get; set; } = string.Empty;
