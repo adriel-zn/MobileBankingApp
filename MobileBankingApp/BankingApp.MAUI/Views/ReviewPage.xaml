@@ -54,7 +54,7 @@ Text="Fee" />
             <Label Grid.Row="8" Grid.Column="1" 
 Text="22" />
 
-            <Button Grid.Row="10" Grid.ColumnSpan="2" Text="Make Payment" StyleClass="Primary" />
+            <Button Grid.Row="10" Grid.ColumnSpan="2" Clicked="Button_Clicked" Text="Make Payment" StyleClass="Primary" />
         </Grid>
     </VerticalStackLayout>
 </ContentPage>
