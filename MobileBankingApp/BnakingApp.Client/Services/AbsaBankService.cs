@@ -5,6 +5,8 @@ using BankingApp.Shared.Models;
 using BankingApp.Shared.RequestModel;
 using BankingApp.Shared.ResponseModel;
 using BankingApp.Client;
+using System.Text;
+using System;
 
 namespace BankingApp.Client.Services
 {
@@ -31,35 +33,53 @@ namespace BankingApp.Client.Services
         #region POST METHOD
         public async Task<PaymentReviewResponseModel> PaymentReviewAsync(PaymentReviewRequestModel paymentReviewRequestModel)
         {
-            var uri = $"https://testbankapi.azurewebsites.net/PaymentReview";
-            var jsonContent = JsonSerializer.Serialize(paymentReviewRequestModel,
-                new JsonSerializerOptions()
-                {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                });
-            var response = await _bankingHttpClient.HttpClient.PostAsJsonAsync(uri, jsonContent);
-            var responseBody = await response.Content.ReadAsStringAsync();
+            try
+            {
+                var uri = $"https://testbankapi.azurewebsites.net/PaymentReview";
+                var jsonContent = JsonSerializer.Serialize(paymentReviewRequestModel,
+                    new JsonSerializerOptions()
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    });
 
-            var responseModel = JsonSerializer.Deserialize<PaymentReviewResponseModel>(responseBody)
-                ?? throw new Exception(response.Content.ToString());
+                HttpContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            return responseModel;
+                HttpResponseMessage response = await _bankingHttpClient.HttpClient.PostAsync(uri, content);
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+
+                var responseModel = JsonSerializer.Deserialize<PaymentReviewResponseModel>(responseBody);
+                return responseModel;
+            }
+            catch (JsonException ex)
+            {
+                throw new Exception($"Invalid JSON: {ex.Message}");
+
+            }
+
+
         }
 
         public async Task<PaymentExecuteResponseModel> PaymentExecuteAsync(PaymentExecuteRequestModel paymentExecuteRequestModel)
         {
-            var uri = $"https://testbankapi.azurewebsites.net/PaymentExecute";
-            var jsonContent = JsonSerializer.Serialize(paymentExecuteRequestModel,new JsonSerializerOptions()
+            try
+            {
+                var uri = $"https://testbankapi.azurewebsites.net/PaymentExecute";
+                var jsonContent = JsonSerializer.Serialize(paymentExecuteRequestModel, new JsonSerializerOptions()
                 {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                 });
-            var response = await _bankingHttpClient.HttpClient.PostAsJsonAsync(uri, jsonContent);
-            var responseBody = await response.Content.ReadAsStringAsync();
+                var response = await _bankingHttpClient.HttpClient.PostAsJsonAsync(uri, jsonContent);
+                var responseBody = await response.Content.ReadAsStringAsync();
 
-            PaymentExecuteResponseModel responseModel = JsonSerializer.Deserialize<PaymentExecuteResponseModel>(responseBody)
-                ?? throw new Exception(response.Content.ToString());
+                var responseModel = JsonSerializer.Deserialize<PaymentExecuteResponseModel>(responseBody);
+                return responseModel;
+            }
+            catch (JsonException ex)
+            {
+                throw new Exception($"Invalid JSON: {ex.Message}");
 
-            return responseModel;
+            }
         }
         #endregion
     }
