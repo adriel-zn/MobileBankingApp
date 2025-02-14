@@ -26,6 +26,12 @@ public partial class PaymentPage : ContentPage
     {
         var viewModel = _serviceProvider.GetService<SharedViewModel>();
 
+        if(viewModel == null && string.IsNullOrEmpty(viewModel.BeneficiaryId))
+        {
+            DisplayAlert("Validated Beneficiary", "Error occured when selecting Beneficiary.", "OK");
+            await Shell.Current.Navigation.PopToRootAsync();
+            return;
+        }
 
         if (SelectedAccountItem == null || SelectedAccountItem?.Number == null)
         {
@@ -41,13 +47,17 @@ public partial class PaymentPage : ContentPage
             return;
         }
 
-
-        var result = _absaBankService.PaymentReviewAsync(new Shared.RequestModel.PaymentReviewRequestModel()
+        var result = await _absaBankService.PaymentReviewAsync(new Shared.RequestModel.PaymentReviewRequestModel()
         {
             AccountNumber = SelectedAccountItem.Number,
             Amount = FeeAmount,
             BeneficiaryId = viewModel?.BeneficiaryId
         });
+
+        viewModel.BeneficiaryId = viewModel.BeneficiaryId;
+        viewModel.AccountNumber = SelectedAccountItem.Number;
+        viewModel.FeeAmount = FeeAmount;
+
 
         await Shell.Current.GoToAsync(nameof(ReviewPage));
     }

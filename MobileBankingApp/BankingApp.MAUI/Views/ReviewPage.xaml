@@ -23,36 +23,16 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" 
-Text="Beneficiary Name" />
-
-            <Label Grid.Row="0" Grid.Column="1" 
-Text="Baboon" />
-
-            <Label Grid.Row="2" Grid.Column="0" 
-            Text="Account Number" />
-
-            <Label Grid.Row="2" Grid.Column="1" 
-Text="1111" />
-
-            <Label Grid.Row="4" Grid.Column="0" 
-Text="Bank" />
-
-            <Label Grid.Row="4" Grid.Column="1" 
-Text="ABSA" />
-
-            <Label Grid.Row="6" Grid.Column="0" 
-Text="Amount" />
-
-
-            <Label Grid.Row="6" Grid.Column="1" 
-Text="12" />
-
-            <Label Grid.Row="8" Grid.Column="0" 
-Text="Fee" />
-
-            <Label Grid.Row="8" Grid.Column="1" 
-Text="22" />
+            <Label Grid.Row="0" Grid.Column="0" Text="Beneficiary Name" />
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Beneficiary.Name}" />
+            <Label Grid.Row="2" Grid.Column="0" Text="Account Number" />
+            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Account.Number}" />
+            <Label Grid.Row="4" Grid.Column="0" Text="Bank" />
+            <Label Grid.Row="4" Grid.Column="1" Text="{Binding Beneficiary.Bank}" />
+            <Label Grid.Row="6" Grid.Column="0" Text="Amount" />
+            <Label Grid.Row="6" Grid.Column="1" Text="{Binding Account.Balance}" />
+            <Label Grid.Row="8" Grid.Column="0" Text="Fee" />
+            <Label Grid.Row="8" Grid.Column="1" Text="{Binding Fee}" />
 
             <Button Grid.Row="10" Grid.ColumnSpan="2" Clicked="Button_Clicked" Text="Make Payment" StyleClass="Primary" />
         </Grid>

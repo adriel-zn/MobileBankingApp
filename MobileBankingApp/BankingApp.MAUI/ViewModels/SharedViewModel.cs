@@ -22,6 +22,28 @@ namespace BankingApp.MAUI.ViewModels
             }
         }
 
+        private string _accountNumber;
+        public string AccountNumber
+        {
+            get => _accountNumber;
+            set
+            {
+                _accountNumber = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private decimal _feeAmount;
+        public decimal FeeAmount
+        {
+            get => _feeAmount;
+            set
+            {
+                _feeAmount = value;
+                OnPropertyChanged();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
         {

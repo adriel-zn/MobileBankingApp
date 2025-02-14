@@ -29,6 +29,7 @@ namespace BankingApp.MAUI
 
             BindingContext = new BeneficiaryViewModel(_absaBankService);
 
+
         }
 
         private async void ViewCell_Tapped_1(object sender, EventArgs e)

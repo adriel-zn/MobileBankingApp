@@ -22,7 +22,7 @@ namespace BankingApp.Client.Services
         public async Task<AccountBeneficiaryModel> PaymentInitialiseAsync()
         {
             var uri = $"https://testbankapi.azurewebsites.net/PaymentInitialise";
-            return await _bankingHttpClient.HttpClient.GetFromJsonAsync<AccountBeneficiaryModel>(uri) 
+            return await _bankingHttpClient.HttpClient.GetFromJsonAsync<AccountBeneficiaryModel>(uri)
                 ?? throw new Exception("Error occurred while retrieving data for payment initialise api.");
         }
         #endregion
@@ -32,11 +32,15 @@ namespace BankingApp.Client.Services
         public async Task<PaymentReviewResponseModel> PaymentReviewAsync(PaymentReviewRequestModel paymentReviewRequestModel)
         {
             var uri = $"https://testbankapi.azurewebsites.net/PaymentReview";
-            var jsonContent = JsonSerializer.Serialize(paymentReviewRequestModel);
+            var jsonContent = JsonSerializer.Serialize(paymentReviewRequestModel,
+                new JsonSerializerOptions()
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
             var response = await _bankingHttpClient.HttpClient.PostAsJsonAsync(uri, jsonContent);
             var responseBody = await response.Content.ReadAsStringAsync();
 
-            PaymentReviewResponseModel responseModel = JsonSerializer.Deserialize<PaymentReviewResponseModel>(responseBody) 
+            var responseModel = JsonSerializer.Deserialize<PaymentReviewResponseModel>(responseBody)
                 ?? throw new Exception(response.Content.ToString());
 
             return responseModel;
@@ -45,7 +49,10 @@ namespace BankingApp.Client.Services
         public async Task<PaymentExecuteResponseModel> PaymentExecuteAsync(PaymentExecuteRequestModel paymentExecuteRequestModel)
         {
             var uri = $"https://testbankapi.azurewebsites.net/PaymentExecute";
-            var jsonContent = JsonSerializer.Serialize(paymentExecuteRequestModel);
+            var jsonContent = JsonSerializer.Serialize(paymentExecuteRequestModel,new JsonSerializerOptions()
+                {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
             var response = await _bankingHttpClient.HttpClient.PostAsJsonAsync(uri, jsonContent);
             var responseBody = await response.Content.ReadAsStringAsync();
 
