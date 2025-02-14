@@ -34,6 +34,7 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<BeneficiaryViewModel>();
         builder.Services.AddSingleton<AccountViewModel>();
+        builder.Services.AddSingleton<SharedViewModel>();
 
         builder.Services.AddSingleton<PaymentPage>();
         builder.Services.AddSingleton<ResultPage>();

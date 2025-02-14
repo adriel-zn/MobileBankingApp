@@ -2,11 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BankingApp.MAUI.Views.PaymentPage"
-             Title="Payment Form"
-             xmlns:local="clr-namespace:BankingApp.MAUI.ViewModels">
-    <ContentPage.BindingContext>
-        <local:AccountViewModel />
-    </ContentPage.BindingContext>
+             Title="Payment Form">
     <VerticalStackLayout>
         <Grid Margin="50">
             <Grid.ColumnDefinitions>
@@ -20,9 +16,12 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Picker Title="Select an Account" Grid.Row="0" ItemsSource="{Binding Accounts}" ItemDisplayBinding="{Binding Number}"   />
-            <Entry Grid.Row="2" Grid.Column="1" 
-                   Placeholder="Enter amount" />
+            <Picker Title="Select an Account" Grid.Row="0" 
+                    SelectedItem="{Binding SelectedAccountItem, Mode=TwoWay}"
+                    ItemsSource="{Binding Items}"
+                    ItemDisplayBinding="{Binding Number}" SelectedIndexChanged="Picker_SelectedIndexChanged"   />
+            <Entry Grid.Row="2" Grid.Column="1" Text="{Binding FeeAmount}" 
+                   Placeholder="Enter amount" TextChanged="Entry_TextChanged" />
 
             <Button Grid.Row="4" Text="Confirm Payment" Clicked="Button_Clicked" StyleClass="Primary" />
         </Grid>

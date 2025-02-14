@@ -1,4 +1,5 @@
 ﻿using BankingApp.Client.Interfaces;
+using BankingApp.Client.Services;
 using BankingApp.Shared.Models;
 using System;
 using System.Collections.Generic;
@@ -7,50 +8,37 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace BankingApp.MAUI.ViewModels
 {
-    public class AccountViewModel :INotifyPropertyChanged
+    public class ReviewViewModel : INotifyPropertyChanged
     {
         private readonly IAbsaBankService _absaBankService;
 
-        public ObservableCollection<AccountModel> Items { get; set; } = new ObservableCollection<AccountModel>();
+        public ObservableCollection<AccountBeneficiaryModel> Items { get; set; } = new ObservableCollection<AccountBeneficiaryModel>();
 
-        public AccountViewModel(IAbsaBankService absaBankService)
+        public ReviewViewModel(IAbsaBankService absaBankService)
         {
             _absaBankService = absaBankService;
 
-            _ = LoadAccounts();
+            _ = LoadReviewedInfo();
         }
 
-        private async Task LoadAccounts()
+        private async Task LoadReviewedInfo()
         {
             var results = await _absaBankService.PaymentInitialiseAsync();
 
             Items.Clear();
 
-            foreach (var item in results.Accounts)
-            {
-                Items.Add(item);
-            }
+            //foreach (var item in results)
+            //{
+            //    Items.Add(item);
+            //}
 
         }
-
-        private AccountModel _selectedAccountItem;
-        public AccountModel SelectedAccountItem
-        {
-            get => _selectedAccountItem;
-            set
-            {
-                if (_selectedAccountItem != value)
-                {
-                    _selectedAccountItem = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
