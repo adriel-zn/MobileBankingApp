@@ -9,6 +9,8 @@ namespace BankingApp.Shared.RequestModel
 {
     public class PaymentExecuteRequestModel
     {
-        public string? InstructionIdentifier { get; set; }
+        [Required]
+        [MinLength(1, ErrorMessage = "Instruction identifier must be at least 1 characters long.")]
+        public required string InstructionIdentifier { get; set; }
     }
 }
