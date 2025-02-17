@@ -54,10 +54,7 @@ namespace BankingApp.Client.Services
             catch (JsonException ex)
             {
                 throw new Exception($"Invalid JSON: {ex.Message}");
-
             }
-
-
         }
 
         public async Task<PaymentExecuteResponseModel> PaymentExecuteAsync(PaymentExecuteRequestModel paymentExecuteRequestModel)
@@ -78,7 +75,6 @@ namespace BankingApp.Client.Services
             catch (JsonException ex)
             {
                 throw new Exception($"Invalid JSON: {ex.Message}");
-
             }
         }
         #endregion
