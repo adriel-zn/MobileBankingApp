@@ -79,7 +79,7 @@ namespace BankingApp.Client.Services
         {
             try
             {
-                return new PaymentExecuteResponseModel() { InstructionReference = "222222222" };
+                //return new PaymentExecuteResponseModel() { InstructionReference = "222222222" };
 
                 var uri = $"https://testbankapi.azurewebsites.net/PaymentExecute";
                 var jsonContent = JsonSerializer.Serialize(paymentExecuteRequestModel,
