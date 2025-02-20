@@ -9,8 +9,6 @@ namespace BankingApp.Shared.ResponseModel
 {
     public class PaymentExecuteResponseModel
     {
-        [Required]
-        [MinLength(1, ErrorMessage = "Instruction reference must be at least 1 characters long.")]
-        public required string InstructionReference { get; set; }
+        public string? InstructionReference { get; set; }
     }
 }

@@ -2,28 +2,32 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BankingApp.MAUI.Views.ResultPage">
+    <StackLayout>
+        <Grid Margin="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
 
-    <Grid Margin="50">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            
-        </Grid.RowDefinitions>
+            </Grid.RowDefinitions>
 
-        <Label 
+            <Label 
     Text="Payment made successfully!" FontSize="Title" Grid.Row="0"
-    VerticalOptions="Center" TextColor="GreenYellow"
+    VerticalOptions="Center" TextColor="GreenYellow" Grid.ColumnSpan="2"
     HorizontalOptions="Center" />
 
-        <!--<Label 
-Text="Payment was unsuccessful!" FontSize="Medium" Grid.Row="0"
-VerticalOptions="Center" TextColor="IndianRed"
-HorizontalOptions="Center" />-->
+            <Label Text="Payment Reference: " FontSize="Title"
+    VerticalOptions="Center" Grid.Row="1"
+    HorizontalOptions="End"></Label>
+            <Label Text="{Binding Result}" FontSize="Title"
+    VerticalOptions="Center" Grid.Row="1" Grid.Column="1"
+    HorizontalOptions="Start"></Label>
 
-        <Button Grid.Row="4" Text="Done" Clicked="Button_Clicked" StyleClass="Primary" />
-    </Grid>
+            <Button Grid.Row="4" Grid.ColumnSpan="2" Text="Done" Clicked="Button_Clicked" StyleClass="Primary" />
+        </Grid>
+    </StackLayout>
 </ContentPage>

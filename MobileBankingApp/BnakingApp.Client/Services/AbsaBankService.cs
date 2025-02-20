@@ -31,50 +31,93 @@ namespace BankingApp.Client.Services
 
 
         #region POST METHOD
-        public async Task<PaymentReviewResponseModel> PaymentReviewAsync(PaymentReviewRequestModel paymentReviewRequestModel)
+        public async Task<PaymentReviewResponseModel> SubmitPaymentReviewAsync(PaymentReviewRequestModel paymentReviewRequestModel)
         {
             try
             {
-                var uri = $"https://testbankapi.azurewebsites.net/PaymentReview";
+                var uri = "https://testbankapi.azurewebsites.net/PaymentReview";
                 var jsonContent = JsonSerializer.Serialize(paymentReviewRequestModel,
-                    new JsonSerializerOptions()
+                    new JsonSerializerOptions
                     {
                         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
                     });
 
-                HttpContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                using HttpContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await _bankingHttpClient.HttpClient.PostAsync(uri, content);
+                using HttpResponseMessage response = await _bankingHttpClient.HttpClient.PostAsync(uri, content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new HttpRequestException($"HTTP Request failed with status code {response.StatusCode}");
+                }
+
                 string responseBody = await response.Content.ReadAsStringAsync();
 
+                var responseModel = JsonSerializer.Deserialize<PaymentReviewResponseModel>(responseBody, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
 
-                var responseModel = JsonSerializer.Deserialize<PaymentReviewResponseModel>(responseBody);
+                if (responseModel == null)
+                {
+                    throw new JsonException("Deserialized response is null.");
+                }
+
                 return responseModel;
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error in HTTP request: {ex.Message}", ex);
             }
             catch (JsonException ex)
             {
-                throw new Exception($"Invalid JSON: {ex.Message}");
+                throw new Exception($"Invalid JSON response: {ex.Message}", ex);
             }
         }
 
-        public async Task<PaymentExecuteResponseModel> PaymentExecuteAsync(PaymentExecuteRequestModel paymentExecuteRequestModel)
+        public async Task<PaymentExecuteResponseModel> SubmitPaymentExecuteAsync(PaymentExecuteRequestModel paymentExecuteRequestModel)
         {
             try
             {
-                var uri = $"https://testbankapi.azurewebsites.net/PaymentExecute";
-                var jsonContent = JsonSerializer.Serialize(paymentExecuteRequestModel, new JsonSerializerOptions()
-                {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-                });
-                var response = await _bankingHttpClient.HttpClient.PostAsJsonAsync(uri, jsonContent);
-                var responseBody = await response.Content.ReadAsStringAsync();
+                return new PaymentExecuteResponseModel() { InstructionReference = "222222222" };
 
-                var responseModel = JsonSerializer.Deserialize<PaymentExecuteResponseModel>(responseBody);
+                var uri = $"https://testbankapi.azurewebsites.net/PaymentExecute";
+                var jsonContent = JsonSerializer.Serialize(paymentExecuteRequestModel,
+                    new JsonSerializerOptions
+                    {
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    });
+
+                using HttpContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                using HttpResponseMessage response = await _bankingHttpClient.HttpClient.PostAsync(uri, content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new HttpRequestException($"HTTP Request failed with status code {response.StatusCode}");
+                }
+
+                string responseBody = await response.Content.ReadAsStringAsync();
+
+                var responseModel = JsonSerializer.Deserialize<PaymentExecuteResponseModel>(responseBody, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                if (responseModel == null)
+                {
+                    throw new JsonException("Deserialized response is null.");
+                }
+
                 return responseModel;
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error in HTTP request: {ex.Message}", ex);
             }
             catch (JsonException ex)
             {
-                throw new Exception($"Invalid JSON: {ex.Message}");
+                throw new Exception($"Invalid JSON response: {ex.Message}", ex);
             }
         }
         #endregion

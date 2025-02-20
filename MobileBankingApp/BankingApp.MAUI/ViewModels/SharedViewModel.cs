@@ -1,5 +1,6 @@
 ﻿using BankingApp.Shared.Models;
 using BankingApp.Shared.RequestModel;
+using BankingApp.Shared.ResponseModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,8 +12,8 @@ namespace BankingApp.MAUI.ViewModels
 {
     public class SharedViewModel : INotifyPropertyChanged
     {
-        private string _beneficiaryId;
-        public string BeneficiaryId
+        private string? _beneficiaryId;
+        public string? BeneficiaryId
         {
             get => _beneficiaryId;
             set
@@ -22,8 +23,8 @@ namespace BankingApp.MAUI.ViewModels
             }
         }
 
-        private string _accountNumber;
-        public string AccountNumber
+        private string? _accountNumber;
+        public string? AccountNumber
         {
             get => _accountNumber;
             set
@@ -40,6 +41,17 @@ namespace BankingApp.MAUI.ViewModels
             set
             {
                 _feeAmount = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string? _instructionIdentifier;
+        public string? InstructionIdentifier
+        {
+            get => _instructionIdentifier;
+            set
+            {
+                _instructionIdentifier = value;
                 OnPropertyChanged();
             }
         }

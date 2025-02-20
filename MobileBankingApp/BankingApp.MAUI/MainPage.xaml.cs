@@ -34,20 +34,10 @@ namespace BankingApp.MAUI
 
         private async void ViewCell_Tapped_1(object sender, EventArgs e)
         {
-            var viewModel = _serviceProvider.GetService<SharedViewModel>();
+            if(string.IsNullOrEmpty(SelectedBeneficiaryItem?.Id))
+                await DisplayAlert("Validating Beneficiary", "Beneficiary id is not valid.", "OK");
 
-            if (viewModel == null) viewModel.BeneficiaryId = string.Empty;
-          
-            viewModel.BeneficiaryId = SelectedBeneficiaryItem?.Id;
-
-
-            if(string.IsNullOrEmpty(viewModel.BeneficiaryId))
-            {
-                DisplayAlert("Validating Beneficiary", "Beneficiary id is not valid.", "OK");
-                await Shell.Current.Navigation.PopToRootAsync();
-            }
-
-            await Shell.Current.GoToAsync(nameof(PaymentPage));
+            await Shell.Current.GoToAsync($"{nameof(PaymentPage)}?beneficiaryId={SelectedBeneficiaryItem?.Id}");
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

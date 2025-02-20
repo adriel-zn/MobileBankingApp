@@ -9,11 +9,8 @@ namespace BankingApp.Shared.ResponseModel
 {
     public class PaymentReviewResponseModel
     {
-        [Required]
-        [MinLength(1, ErrorMessage = "Instruction identifier must be at least 1 characters long.")]
-        public required string InstructionIdentifier { get; set; }
+        public string? InstructionIdentifier { get; set; }
 
-        [Required]
         public decimal Fees { get; set; }
     }
 }

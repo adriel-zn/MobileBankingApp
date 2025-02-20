@@ -16,8 +16,8 @@ namespace BankingApp.Client.Interfaces
         #endregion
 
         #region POST METHOD
-        Task<PaymentReviewResponseModel> PaymentReviewAsync(PaymentReviewRequestModel paymentReviewRequestModel);
-        Task<PaymentExecuteResponseModel> PaymentExecuteAsync(PaymentExecuteRequestModel paymentExecuteRequestModel);
+        Task<PaymentReviewResponseModel> SubmitPaymentReviewAsync(PaymentReviewRequestModel paymentReviewRequestModel);
+        Task<PaymentExecuteResponseModel> SubmitPaymentExecuteAsync(PaymentExecuteRequestModel paymentExecuteRequestModel);
         #endregion
     }
 

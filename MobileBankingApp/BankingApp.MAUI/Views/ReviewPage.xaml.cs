@@ -3,14 +3,16 @@ using BankingApp.MAUI.ViewModels;
 
 namespace BankingApp.MAUI.Views;
 
+
 public partial class ReviewPage : ContentPage
 {
     private readonly IAbsaBankService _absaBankService;
     private readonly IServiceProvider _serviceProvider;
 
-    public ReviewPage(IAbsaBankService absaBankService, IServiceProvider serviceProvider)
-	{
-		InitializeComponent();
+    public ReviewPage(IAbsaBankService absaBankService,
+        IServiceProvider serviceProvider)
+    {
+        InitializeComponent();
 
         _absaBankService = absaBankService;
         _serviceProvider = serviceProvider;
@@ -21,12 +23,25 @@ public partial class ReviewPage : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
+        var viewModel = _serviceProvider.GetService<SharedViewModel>();
 
-        //var result = _absaBankService.PaymentExecuteAsync(new Shared.RequestModel.PaymentExecuteRequestModel()
-        //{
-        //    InstructionIdentifier 
-        //});
+        if (viewModel != null)
+        {
+            try
+            {
+                var result = await _absaBankService.SubmitPaymentExecuteAsync(new Shared.RequestModel.PaymentExecuteRequestModel()
+                {
+                    InstructionIdentifier = viewModel.InstructionIdentifier
+                });
 
-        await Shell.Current.GoToAsync(nameof(ResultPage));
+                if (!string.IsNullOrEmpty(result.InstructionReference))
+                    await Shell.Current.GoToAsync($"{nameof(ResultPage)}?result={result.InstructionReference}");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error occured", ex.Message, "OK");
+                return;
+            }
+        }
     }
 }

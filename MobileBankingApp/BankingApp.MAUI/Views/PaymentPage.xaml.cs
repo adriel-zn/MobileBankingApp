@@ -4,15 +4,29 @@ using BankingApp.Shared.Models;
 
 namespace BankingApp.MAUI.Views;
 
+[QueryProperty(nameof(BeneficiaryId), "beneficiaryId")]
 public partial class PaymentPage : ContentPage
 {
+    private string? _beneficiaryId;
+
     private readonly IAbsaBankService _absaBankService;
     private readonly IServiceProvider _serviceProvider;
 
     public AccountModel SelectedAccountItem { get; set; }
     public decimal FeeAmount { get; set; }
 
-    public PaymentPage(IAbsaBankService absaBankService, IServiceProvider serviceProvider)
+    public string? BeneficiaryId
+    {
+        get => _beneficiaryId;
+        set
+        {
+            _beneficiaryId = value;
+            OnPropertyChanged(nameof(BeneficiaryId));
+        }
+    }
+
+    public PaymentPage(IAbsaBankService absaBankService,
+        IServiceProvider serviceProvider)
     {
         InitializeComponent();
 
@@ -24,42 +38,52 @@ public partial class PaymentPage : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        var viewModel = _serviceProvider.GetService<SharedViewModel>();
-
-        if(viewModel == null && string.IsNullOrEmpty(viewModel.BeneficiaryId))
+        if (_beneficiaryId == null)
         {
-            DisplayAlert("Validated Beneficiary", "Error occured when selecting Beneficiary.", "OK");
+            await DisplayAlert("Validated Beneficiary", "Error occurred when selecting Beneficiary.", "OK");
             await Shell.Current.Navigation.PopToRootAsync();
-            return;
         }
+
+
+        var viewModel = _serviceProvider.GetService<SharedViewModel>();
 
         if (SelectedAccountItem == null || SelectedAccountItem?.Number == null)
         {
-            DisplayAlert("Validated Account", "Account has not been selected.", "OK");
-            await Shell.Current.Navigation.PopToRootAsync();
+            await DisplayAlert("Validated Account", "Account has not been selected.", "OK");
             return;
         }
 
         if (string.IsNullOrEmpty(FeeAmount.ToString()))
         {
-            DisplayAlert("Validated Account", "Fee amount has not been entered.", "OK");
-            await Shell.Current.Navigation.PopToRootAsync();
+            await DisplayAlert("Validated Account", "Fee amount has not been entered.", "OK");
             return;
         }
 
-        var result = await _absaBankService.PaymentReviewAsync(new Shared.RequestModel.PaymentReviewRequestModel()
+        try
         {
-            AccountNumber = SelectedAccountItem.Number,
-            Amount = FeeAmount,
-            BeneficiaryId = viewModel?.BeneficiaryId
-        });
+            var result = await _absaBankService.SubmitPaymentReviewAsync(new Shared.RequestModel.PaymentReviewRequestModel()
+            {
+                AccountNumber = SelectedAccountItem.Number,
+                Amount = FeeAmount,
+                BeneficiaryId = BeneficiaryId
+            });
 
-        viewModel.BeneficiaryId = viewModel.BeneficiaryId;
-        viewModel.AccountNumber = SelectedAccountItem.Number;
-        viewModel.FeeAmount = FeeAmount;
+            if (viewModel == null) viewModel = new SharedViewModel();
+
+            viewModel.BeneficiaryId = BeneficiaryId;
+            viewModel.AccountNumber = SelectedAccountItem.Number;
+            viewModel.FeeAmount = result.Fees;
+            viewModel.InstructionIdentifier = result.InstructionIdentifier;
+
+            await Shell.Current.GoToAsync(nameof(ReviewPage));
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error occured", ex.Message, "OK");
+            return;
+        }
 
 
-        await Shell.Current.GoToAsync(nameof(ReviewPage));
     }
 
     private void Picker_SelectedIndexChanged(object sender, EventArgs e)

@@ -10,8 +10,8 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="20"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="20"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
@@ -20,6 +20,7 @@
                     SelectedItem="{Binding SelectedAccountItem, Mode=TwoWay}"
                     ItemsSource="{Binding Items}"
                     ItemDisplayBinding="{Binding Number}" SelectedIndexChanged="Picker_SelectedIndexChanged"   />
+            <Label Grid.Row="1" Grid.Column="0" Text="Fee Amount"></Label>
             <Entry Grid.Row="2" Grid.Column="1" Text="{Binding FeeAmount}" 
                    Placeholder="Enter amount" TextChanged="Entry_TextChanged" />
 

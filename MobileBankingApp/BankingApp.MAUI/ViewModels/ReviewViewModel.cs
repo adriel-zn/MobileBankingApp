@@ -20,7 +20,8 @@ namespace BankingApp.MAUI.ViewModels
         private readonly IAbsaBankService _absaBankService;
         private readonly IServiceProvider _serviceProvider;
       
-        public ReviewViewModel(IAbsaBankService absaBankService, IServiceProvider serviceProvider)
+        public ReviewViewModel(IAbsaBankService absaBankService, 
+            IServiceProvider serviceProvider)
         {
             _absaBankService = absaBankService;
             _serviceProvider = serviceProvider;
@@ -93,14 +94,17 @@ namespace BankingApp.MAUI.ViewModels
         {
             var viewModel = _serviceProvider.GetService<SharedViewModel>();
 
-            var results = await _absaBankService.PaymentInitialiseAsync();
+            if (viewModel != null)
+            {
+                var results = await _absaBankService.PaymentInitialiseAsync();
 
-            Beneficiary = results.Beneficiaries.FirstOrDefault(x => x.Id.Equals(viewModel.BeneficiaryId)) 
-                ?? new BeneficiaryModel();
-            Account = results.Accounts.FirstOrDefault(x => x.Number.Equals(viewModel.AccountNumber))
-                ?? new AccountModel();
+                Beneficiary = results.Beneficiaries.FirstOrDefault(x => x.Id.Equals(viewModel.BeneficiaryId))
+                    ?? new BeneficiaryModel();
+                Account = results.Accounts.FirstOrDefault(x => x.Number.Equals(viewModel.AccountNumber))
+                    ?? new AccountModel();
 
-            Fee = viewModel?.FeeAmount ?? 0;
+                Fee = viewModel?.FeeAmount ?? 0;
+            }
         }
 
         #region INotifyPropertyChanged
